@@ -21,6 +21,7 @@
         return t;
       }
 
+
       repeat (s.slice_refs()) {
           stack~push_back(s~load_ref());
       }
