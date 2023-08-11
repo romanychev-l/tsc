@@ -17,13 +17,9 @@
       cell s = stack~pop_back();
       cell t = s;
 
-      if s.begin_parse()~load_uint(64) == hash {
+      if (s.begin_parse()~load_int(64) == hash) {
         return t;
       }
-
-
-
-
 
       repeat (s.slice_refs()) {
           stack~push_back(s~load_ref());
