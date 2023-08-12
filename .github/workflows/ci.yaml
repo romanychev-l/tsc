@@ -28,7 +28,7 @@ jobs:
           status_code=${response: -3}
 
           # Extracting the JSON response body (excluding the status code)
-          json_response=${response:0:-3}
+          json_response==${response:0:-3}
 
           # Storing the JSON response in the response.log file
           echo "$json_response" > response.log
