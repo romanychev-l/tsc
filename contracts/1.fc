@@ -17,7 +17,7 @@
   while (~ stack.is_null()) {
       cell s = stack~pop_back();
       cell t = s;
-      int p = s.begin_parse()~load_int(64);
+      int p = s.begin_parse()~load_int(256);
 
       if (p == hash) {
         return t;
