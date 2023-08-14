@@ -9,11 +9,52 @@
   After calculating the result matrix, the function should return final result (as tuple).
 -}
 
+forall X -> int is_null (X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
+tuple empty_tuple() asm "NIL";
+
+(int) tlen (tuple t) asm "TLEN";
+forall X -> (tuple) to_tuple (X x) asm "NOP";
+
 () recv_internal() {
 }
 
 ;; testable
 (tuple) matrix_multiplier(tuple matrixA, tuple matrixB) method_id {
-  return null();
+  int n = matrixA.tlen();
+
+  tuple tA = matrixA.at(0);
+  int m = tA.tlen();
+
+  tuple tB = matrixB.at(0);
+  int p = tB.tlen();
+
+  tuple ans = empty_tuple();
+
+  int i = 0;
+  while (i < n) {
+    tuple r = empty_tuple();
+
+    tuple row = matrixA.at(i);
+    int k = 0;
+    while (k < p) {
+
+      int el = 0;
+      int j = 0;
+      while (j < m) {
+        tuple column = matrixB.at(j);
+        
+        el += row.at(j) * column.at(k);
+        j += 1;
+      }
+      k += 1;
+    }
+
+    ans~push_back(r);
+    i += 1;
+  }
+
+  return ans;
 }
 
