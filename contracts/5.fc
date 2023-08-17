@@ -29,11 +29,12 @@
       ans~tpush(b);
     }
 
-    if (i + 1 <= n + k){
+    if (i + 2 <= n + k){
       int c = a + b;
       a = b;
       b = c;
     }
+
   }
   ~dump(ans);
 
