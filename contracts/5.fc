@@ -22,18 +22,20 @@
   int b = 1;
   tuple ans = empty_tuple();
 
-  int i = 1;
-  while (i <= n + k) {
-    if (i > n) {
-      ans~tpush(a);
-    }
-    int c = a + b;
-    a = b;
-    b = c;
-
+  int i = 0;
+  while (i + 1 <= n + k) {
     i += 1;
+    if ((i >= n) & (i + 1 <= n + k)) {
+      ans~tpush(b);
+    }
+
+    if (i + 1 <= n + k){
+      int c = a + b;
+      a = b;
+      b = c;
+    }
   }
-  ;; ~dump(ans);
+  ~dump(ans);
 
   return ans;
 }
