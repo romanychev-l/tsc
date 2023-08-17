@@ -35,8 +35,8 @@ describe('Task5', () => {
         // the check is done inside beforeEach
         // blockchain and task5 are ready to use
 
-        let n = 1;
-        let k = 3;
+        let n = 0;
+        let k = 0;
         const result = await task5.getFibonacciSequence(n, k);
         expect(result).toEqual([1n, 1n, 2n]);
     });
