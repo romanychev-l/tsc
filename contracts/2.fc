@@ -50,12 +50,12 @@ forall X -> (tuple) to_tuple (X x) asm "NOP";
         j += 1;
       }
 
-      r~push_back(el);
+      r~tpush(el);
       ;;~dump(r);
       k += 1;
     }
 
-    ans~push_back(r);
+    ans~tpush(r);
     i += 1;
   }
   ;;~dump(ans);
