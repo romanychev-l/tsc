@@ -23,8 +23,8 @@ forall X -> (tuple) to_tuple (X x) asm "NOP";
 ;; testable
 (tuple) matrix_multiplier(tuple matrixA, tuple matrixB) method_id {
   int n = matrixA.tlen();
-
   tuple tA = matrixA.at(0);
+
   int m = tA.tlen();
 
   tuple tB = matrixB.at(0);
@@ -37,6 +37,7 @@ forall X -> (tuple) to_tuple (X x) asm "NOP";
     tuple r = empty_tuple();
 
     tuple row = matrixA.at(i);
+    
     int k = 0;
     while (k < p) {
 
@@ -48,13 +49,15 @@ forall X -> (tuple) to_tuple (X x) asm "NOP";
         el += row.at(j) * column.at(k);
         j += 1;
       }
+
+      r~push_back(el);
+      ;;~dump(r);
       k += 1;
     }
 
     ans~push_back(r);
     i += 1;
   }
-
+  ;;~dump(ans);
   return ans;
 }
-

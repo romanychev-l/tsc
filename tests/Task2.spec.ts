@@ -34,5 +34,11 @@ describe('Task2', () => {
     it('should deploy', async () => {
         // the check is done inside beforeEach
         // blockchain and task2 are ready to use
+
+        const matrixA = [[1, 2, 3], [4, 5, 6]];
+        const matrixB = [[1, 2], [3, 4], [5, 6]];
+
+        const result = await task2.getMatrixMultiplier(matrixA, matrixB);
+        expect(result).toEqual([[22, 28], [49, 64]]);
     });
 });
