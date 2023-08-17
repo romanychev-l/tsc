@@ -34,5 +34,10 @@ describe('Task5', () => {
     it('should deploy', async () => {
         // the check is done inside beforeEach
         // blockchain and task5 are ready to use
+
+        let n = 1;
+        let k = 3;
+        const result = await task5.getFibonacciSequence(n, k);
+        expect(result).toEqual([1n, 1n, 2n]);
     });
 });
