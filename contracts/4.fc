@@ -11,11 +11,65 @@
 
 ;; testable
 (cell) caesar_cipher_encrypt(int shift, cell text) method_id {
-  return begin_cell().end_cell();
+  slice str_part = text.begin_parse();
+  int flag = str_part~load_uint(32);
+
+  cell str_builder = begin_cell();
+
+  while (slice_bits(str_part)) {
+    int char = str_part~load_uint(8);
+    if (((char > 64) & (char < 91)) | ((char > 96) & (char < 123))) {
+      char = shift_char(char, shift, true);
+    }
+    str_builder~store_uint(char, 8);
+  }
+
+  return str_builder.end_cell();
 }
 
 ;; testable
 (cell) caesar_cipher_decrypt(int shift, cell text) method_id {
-  return begin_cell().end_cell();
+  slice str_part = text.begin_parse();
+  int flag = str_part~load_uint(32);
+
+  cell str_builder = begin_cell();
+
+  while (slice_bits(str_part)) {
+    int chat = str_part~load_uint(8);
+    if (((char > 64) & (char < 91)) | ((char > 96) & (char < 123))) {
+      char = shift_char(char, shift, false);
+    }
+    str_builder~store_uint(char, 8);
+  }
+
+  return str_builder.end_cell();
 }
 
+(int) shift_char(int char, int shift, int encript?) {
+  int lowercase? = false;
+  if (char > 96) {
+    lowercase? = true;
+  }
+  if (encript?) {
+    if (lowercase?) {
+      char = 97 + ((char - 97 + shift) % 26);
+    } else {
+      char = 65 + ((char - 65 + shift) % 26);
+    }
+  } else {
+    repeat (shift) {
+      char -= 1;
+      if (lowercase?) {
+        if (char < 97) {
+          char = 122;
+        }
+      } else {
+        if (char < 65) {
+          char = 90;
+        }
+      }
+    }
+  }
+  
+  return char;
+}
