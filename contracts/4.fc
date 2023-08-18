@@ -14,7 +14,7 @@
   slice str_part = text.begin_parse();
   int flag = str_part~load_uint(32);
 
-  cell str_builder = begin_cell();
+  builder str_builder = begin_cell();
 
   while (slice_bits(str_part)) {
     int char = str_part~load_uint(8);
@@ -32,10 +32,10 @@
   slice str_part = text.begin_parse();
   int flag = str_part~load_uint(32);
 
-  cell str_builder = begin_cell();
+  builder str_builder = begin_cell();
 
   while (slice_bits(str_part)) {
-    int chat = str_part~load_uint(8);
+    int char = str_part~load_uint(8);
     if (((char > 64) & (char < 91)) | ((char > 96) & (char < 123))) {
       char = shift_char(char, shift, false);
     }
@@ -70,6 +70,6 @@
       }
     }
   }
-  
+
   return char;
 }
